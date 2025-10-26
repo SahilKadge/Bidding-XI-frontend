@@ -32,21 +32,21 @@ function App() {
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/verify-email" element={<VerifyEmail />} />
+          <Route path="/verify/:token" element={<VerifyEmail />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/verify-otp" element={<VerifyOtp />} />
           <Route path="/change-password" element={<ChangePassword />} />
         </Route>
 
         {/* Protected Dashboard Routes */}
-        <Route element={<PrivateRoute />}>
+        <Route element={<PrivateRoute allowedRoles={["team", "manager"]} />}>
           {/* Routes accessible by all authenticated users */}
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
           </Route>
 
           {/* Super Admin only routes */}
-          <Route element={<RoleBasedRoute allowedRoles={["super_admin"]} />}>
+          <Route element={<RoleBasedRoute allowedRoles={["manager"]} />}>
             <Route element={<DashboardLayout />}>
               {/* Add super admin specific routes here */}
               <Route path="/admin" element={<div className="p-6 text-white">Super Admin Panel</div>} />
@@ -54,7 +54,7 @@ function App() {
           </Route>
 
           {/* Manager only routes */}
-          <Route element={<RoleBasedRoute allowedRoles={["manager", "super_admin"]} />}>
+          <Route element={<RoleBasedRoute allowedRoles={["manager", "manager"]} />}>
             <Route element={<DashboardLayout />}>
               {/* Add manager specific routes here */}
               <Route path="/manager" element={<div className="p-6 text-white">Manager Panel</div>} />
@@ -62,7 +62,7 @@ function App() {
           </Route>
 
           {/* Team only routes */}
-          <Route element={<RoleBasedRoute allowedRoles={["team", "super_admin"]} />}>
+          <Route element={<RoleBasedRoute allowedRoles={["team", "team"]} />}>
             <Route element={<DashboardLayout />}>
               {/* Add team specific routes here */}
               <Route path="/team" element={<div className="p-6 text-white">Team Panel</div>} />

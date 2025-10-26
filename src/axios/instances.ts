@@ -1,7 +1,7 @@
 import axios, { type AxiosInstance, AxiosError } from "axios";
 
 // export const baseURL = import.meta.env.VITE_API_BASE_URL || "https://api.stg.legalclutch.com/api/v1";
-export const baseURL = "http://localhost:8s000/api/v1";
+export const baseURL = "http://localhost:8000/api/v1";
 // https://api.stg.legalclutch.com/api/v1
 //  const baseURL = "https://staging.api.cw.smartimmigrant.com/api/v1";
 

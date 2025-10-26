@@ -1,17 +1,17 @@
 // src/pages/auth/VerifyEmail.tsx
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { verifyEmail } from '../../redux/authSlice';
 import { type RootState } from '../../redux/store';
 
 const VerifyEmail: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+  const { token } = useParams<{ token: string }>();
   const { loading, error, message } = useSelector((state: RootState) => state.auth);
   
-  const token = searchParams.get('token');
+
 
   useEffect(() => {
     if (token) {
