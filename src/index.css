@@ -1,0 +1,428 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* ClickUp Dark Mode Color Theme */
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #1a1a1a;
+  --card-foreground: #ffffff;
+  --popover: #1a1a1a;
+  --popover-foreground: #ffffff;
+  --primary: #6347ea; /* ClickUp purple accent */
+  --primary-foreground: #ffffff;
+  --secondary: #ff78c8; /* ClickUp pink accent */
+  --secondary-foreground: #ffffff;
+  --muted: #b0b0b0;
+  --muted-foreground: #b0b0b0;
+  --accent: #6347ea; /* Use purple for accent */
+  --accent-foreground: #ffffff;
+  --destructive: #e53e3e; /* Error red */
+  --destructive-foreground: #ffffff;
+  --border: #2c2c2c; /* Divider lines */
+  --input: #1a1a1a;
+  --ring: #6347ea;
+  --chart-1: #6347ea;
+  --chart-2: #ff78c8;
+  --chart-3: #38b2ac; /* Success/teal */
+  --chart-4: #f6c23e; /* Warning/yellow */
+  --chart-5: #e53e3e; /* Error/red */
+  --radius: 0.625rem;
+  --sidebar: #000000;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #6347ea;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ff78c8;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #2c2c2c;
+  --sidebar-ring: #6347ea;
+}
+
+.dark {
+  --background: oklch(0 0 0);
+  --foreground: oklch(1 0 0);
+  --card: oklch(0.1 0 0);
+  --card-foreground: oklch(1 0 0);
+  --popover: oklch(0.1 0 0);
+  --popover-foreground: oklch(1 0 0);
+  --primary: oklch(0.62 0.26 290); /* Purple */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.75 0.25 330); /* Pink */
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.7 0 0);
+  --muted-foreground: oklch(0.7 0 0);
+  --accent: oklch(0.62 0.26 290);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.18 0 0);
+  --input: oklch(0.1 0 0);
+  --ring: oklch(0.62 0.26 290);
+  --chart-1: oklch(0.62 0.26 290);
+  --chart-2: oklch(0.75 0.25 330);
+  --chart-3: oklch(0.7 0.2 180);
+  --chart-4: oklch(0.85 0.18 90);
+  --chart-5: oklch(0.55 0.22 25);
+  --sidebar: oklch(0.1 0 0);
+  --sidebar-foreground: oklch(1 0 0);
+  --sidebar-primary: oklch(0.62 0.26 290);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.75 0.25 330);
+  --sidebar-accent-foreground: oklch(1 0 0);
+  --sidebar-border: oklch(0.18 0 0);
+  --sidebar-ring: oklch(0.62 0.26 290);
+}
+
+@theme inline {
+  --font-sans: "DM Sans", "Inter", system-ui, sans-serif;
+  --font-heading: "Switzer", system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Updated gradient to use ClickUp’s purple & pink accent colors */
+.gradient-accent {
+  background: linear-gradient(90deg, #6347ea, #ff78c8, #6347ea);
+}
+
+.gradient-accent-text {
+  background: linear-gradient(90deg, #6347ea, #ff78c8, #6347ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Accent hover states */
+.purple-hover {
+  transition: all 0.3s ease;
+}
+
+.purple-hover:hover {
+  color: #6347ea;
+  text-shadow: 0 0 10px rgba(123, 93, 213, 0.4);
+}
+
+/* Sidebar animations */
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(123, 93, 213, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(123, 93, 213, 0.6);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.animate-slide-out {
+  animation: slideOut 0.3s ease-out;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* =========================
+   🔹 CUSTOM SCROLLBAR
+   ========================= */
+
+/* For Webkit browsers (Chrome, Edge, Safari) */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 8px;           /* Thin scrollbar */
+  height: 8px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: var(--sidebar); /* Track background matches sidebar */
+  border-radius: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: #1a1a1a; /* Purple accent */
+  border-radius: 4px;
+  border: 2px solid var(--sidebar); /* Padding around thumb */
+  transition: background-color 0.3s ease;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: #1a1a1a; /* Highlight on hover */
+}
+
+/* For Firefox */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #1a1a1a var(--sidebar);
+}
+
+.scrollbar-thin:hover {
+  scrollbar-color: #1a1a1a var(--sidebar);
+}
+
+/* Cricket Auction Specific Styles */
+.cricket-field-bg {
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(99, 71, 234, 0.1) 0%, transparent 50%),
+    linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+}
+
+.auction-card {
+  background: linear-gradient(145deg, #1a1a1a 0%, #2c2c2c 100%);
+  border: 1px solid #2c2c2c;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.player-card {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  border: 1px solid #363636;
+  transition: all 0.3s ease;
+}
+
+.player-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(99, 71, 234, 0.2);
+  border-color: #6347ea;
+}
+
+.team-badge {
+  background: linear-gradient(135deg, #6347ea, #ff78c8);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.budget-display {
+  background: linear-gradient(135deg, #38b2ac, #319795);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-weight: bold;
+}
+
+.auction-timer {
+  background: linear-gradient(135deg, #f6c23e, #e53e3e);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 16px;
+  font-family: monospace;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Cricket ball animation */
+@keyframes spin-ball {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.cricket-ball {
+  animation: spin-ball 2s linear infinite;
+}
+
+/* Stumps animation */
+@keyframes shake-stumps {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(2deg); }
+  75% { transform: rotate(-2deg); }
+}
+
+.stumps {
+  animation: shake-stumps 3s ease-in-out infinite;
+}
+
+/* Bat swing animation */
+@keyframes swing-bat {
+  0% { transform: rotate(-30deg); }
+  50% { transform: rotate(30deg); }
+  100% { transform: rotate(-30deg); }
+}
+
+.bat {
+  animation: swing-bat 1.5s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+/* Gradient borders */
+.gradient-border {
+  border: 2px solid transparent;
+  background: 
+    linear-gradient(45deg, #6347ea, #ff78c8, #6347ea) border-box,
+    linear-gradient(45deg, #1a1a1a, #1a1a1a) padding-box;
+}
+
+/* Pulse effect for live auctions */
+@keyframes pulse-live {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(229, 62, 62, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(229, 62, 62, 0);
+  }
+}
+
+.live-indicator {
+  animation: pulse-live 2s infinite;
+  background: #e53e3e;
+}
+
+/* Responsive cricket field grid */
+.cricket-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Loading spinner with cricket theme */
+.cricket-spinner {
+  border: 4px solid rgba(99, 71, 234, 0.3);
+  border-top: 4px solid #6347ea;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+/* Auction bid button styles */
+.bid-button {
+  background: linear-gradient(135deg, #6347ea, #ff78c8);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.bid-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(99, 71, 234, 0.4);
+}
+
+.bid-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Team color coding */
+.team-color-1 { border-left: 4px solid #6347ea; }
+.team-color-2 { border-left: 4px solid #ff78c8; }
+.team-color-3 { border-left: 4px solid #38b2ac; }
+.team-color-4 { border-left: 4px solid #f6c23e; }
+.team-color-5 { border-left: 4px solid #e53e3e; }
+.team-color-6 { border-left: 4px solid #9f7aea; }
+.team-color-7 { border-left: 4px solid #ed64a6; }
+.team-color-8 { border-left: 4px solid #48bb78; }
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .cricket-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .auction-timer {
+    font-size: 1.25rem;
+    padding: 8px 16px;
+  }
+  
+  .player-card {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Dark mode enhancements for cricket theme */
+@media (prefers-color-scheme: dark) {
+  .cricket-field-bg {
+    background: 
+      radial-gradient(circle at 50% 50%, rgba(99, 71, 234, 0.15) 0%, transparent 50%),
+      linear-gradient(135deg, #000000 0%, #0f0f0f 50%, #000000 100%);
+  }
+}
